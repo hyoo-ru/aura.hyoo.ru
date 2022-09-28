@@ -1,0 +1,131 @@
+$mol_ghost $mol_view
+	Sub $mol_view
+
+$mol_drop $mol_ghost
+	event *
+		dragenter?event <=> enter?event null
+		dragover?event <=> move?event null
+		dragleave?event <=> leave?event null
+		drop?event <=> drop?event null
+	attr * mol_drop_status <= status?val \ready
+	adopt?transfer *
+	receive?transfer null
+
+$mol_stack $mol_view
+
+$mol_touch $mol_plugin
+	start_zoom?val 0
+	start_distance?val 0
+	zoom?val 1
+	allow_draw true
+	allow_pan true
+	allow_zoom true
+	action_type?val \
+	action_point?val $mol_vector_2d /
+		NaN
+		NaN
+	-
+	start_pan?val /
+		0
+		0
+	pan?val $mol_vector_2d /
+		0
+		0
+	pointer_center $mol_vector_2d /
+		NaN
+		NaN
+	-
+	start_pos?val null
+	swipe_precision 16
+	-
+	swipe_right?val null
+	swipe_bottom?val null
+	swipe_left?val null
+	swipe_top?val null
+	-
+	swipe_from_right?val null
+	swipe_from_bottom?val null
+	swipe_from_left?val null
+	swipe_from_top?val null
+	-
+	swipe_to_right?val null
+	swipe_to_bottom?val null
+	swipe_to_left?val null
+	swipe_to_top?val null
+	-
+	draw_start?event null
+	draw?event null
+	draw_end?event null
+	-
+	style *
+		^
+		touch-action \none
+		overscroll-behavior \none
+	-
+	event *
+		^
+		pointerdown?event <=> event_start?event null
+		pointermove?event <=> event_move?event null
+		pointerup?event <=> event_end?event null
+		pointerleave?event <=> event_leave?event null
+		wheel?event <=> event_wheel?event null
+
+$mol_video_player $mol_view
+	dom_name \video
+	playing?val false
+	volume?val 0
+	time?val 0
+	duration 0
+	attr *
+		src <= uri \
+		controls <= controls true
+		autoplay <= autoplay true
+		poster <= poster \
+	event *
+		volumechange?event <=> revolume?event null
+		timeupdate?event <=> retime?event null
+		durationchange?event <=> redurate?event null
+		playing?event <=> play_started?event null
+		play?event <=> play?event null
+		pause?event <=> pause?event null
+
+$hyoo_aura $mol_drop
+	files?next /
+	Sub <= Pane $mol_stack
+		sub <= shapes /
+			<= Video*0 $hyoo_aura_video
+				uri <= video_uri* \
+				drop? <=> shape_drop*? null
+
+$hyoo_aura_video $mol_view
+	- anchor? /number
+	- pos? /number
+	sub /
+		<= Output $hyoo_aura_video_output
+			uri <= uri \
+			transform <= transform \
+			aspect <= aspect? 1
+	plugins /
+		<= Touch $mol_touch
+			allow_draw false
+			zoom? <=> zoom? 1
+			- draw_start? <=> move_start? null
+			- draw? <=> move? null
+			- action_type => action_type
+			- action_point => action_point
+			pan? <=> pos? $mol_vector_2d /
+				0
+				0
+	event *
+		^
+		dblclick? <=> drop? null
+		wheel? <=> wheel? null
+
+$hyoo_aura_video_output $mol_video_player
+	loop true
+	controls false
+	aspect 1
+	style *
+		^
+		transform <= transform \
+		aspect-ratio <= aspect_style \1
