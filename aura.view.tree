@@ -1,0 +1,40 @@
+$hyoo_aura $mol_drop
+	files?next /
+	Sub <= Pane $mol_stack
+		sub <= shapes /
+			<= Video*0 $hyoo_aura_video
+				uri <= video_uri* \
+				drop? <=> shape_drop*? null
+
+$hyoo_aura_video $mol_view
+	- anchor? /number
+	- pos? /number
+	sub /
+		<= Output $hyoo_aura_video_output
+			uri <= uri \
+			transform <= transform \
+			aspect <= aspect? 1
+	plugins /
+		<= Touch $mol_touch
+			allow_draw false
+			zoom? <=> zoom? 1
+			- draw_start? <=> move_start? null
+			- draw? <=> move? null
+			- action_type => action_type
+			- action_point => action_point
+			pan? <=> pos? $mol_vector_2d /
+				0
+				0
+	event *
+		^
+		dblclick? <=> drop? null
+		wheel? <=> wheel? null
+
+$hyoo_aura_video_output $mol_video_player
+	loop true
+	controls false
+	aspect 1
+	style *
+		^
+		transform <= transform \
+		aspect-ratio <= aspect_style \1

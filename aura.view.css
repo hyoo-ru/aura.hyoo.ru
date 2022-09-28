@@ -1,0 +1,15 @@
+[hyoo_aura] {
+	overflow: hidden;
+	background: black;
+}
+
+[hyoo_aura_video] {
+	width: 100%;
+	height: 100%;
+}
+
+[hyoo_aura_video_output] {
+	flex: 0 0 auto;
+	transform-origin: left top;
+	object-fit: cover;
+}
