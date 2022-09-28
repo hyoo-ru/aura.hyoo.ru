@@ -37,7 +37,12 @@ namespace $.$$ {
 		
 		@ $mol_mem
 		shapes() {
-			return this.files().map( ( _, index )=> this.Video( index ) )
+			
+			const files = this.files()
+			if( !files.length ) return [ this.Hint() ]
+			
+			return files.map( ( _, index )=> this.Video( index ) )
+			
 		}
 		
 		file_drop( file: Entry ) {
