@@ -3336,6 +3336,13 @@ var $;
         Sub() {
             return this.Pane();
         }
+        Hint() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                "Drop videos here"
+            ];
+            return obj;
+        }
         video_uri(id) {
             return "";
         }
@@ -3364,6 +3371,9 @@ var $;
     __decorate([
         $mol_mem
     ], $hyoo_aura.prototype, "files", null);
+    __decorate([
+        $mol_mem
+    ], $hyoo_aura.prototype, "Hint", null);
     __decorate([
         $mol_mem_key
     ], $hyoo_aura.prototype, "shape_drop", null);
@@ -3492,7 +3502,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/aura/aura.view.css", "[hyoo_aura] {\n\toverflow: hidden;\n\tbackground: black;\n}\n\n[hyoo_aura_video] {\n\twidth: 100%;\n\theight: 100%;\n}\n\n[hyoo_aura_video_output] {\n\tflex: 0 0 auto;\n\ttransform-origin: left top;\n\tobject-fit: cover;\n}\n");
+    $mol_style_attach("hyoo/aura/aura.view.css", "[hyoo_aura] {\n\toverflow: hidden;\n\tbackground: black;\n}\n\n[hyoo_aura_hint] {\n\tmargin: auto;\n}\n\n[hyoo_aura_video] {\n\twidth: 100%;\n\theight: 100%;\n}\n\n[hyoo_aura_video_output] {\n\tflex: 0 0 auto;\n\ttransform-origin: left top;\n\tobject-fit: cover;\n}\n");
 })($ || ($ = {}));
 //hyoo/aura/-css/aura.view.css.ts
 ;
@@ -3522,7 +3532,10 @@ var $;
                 return files;
             }
             shapes() {
-                return this.files().map((_, index) => this.Video(index));
+                const files = this.files();
+                if (!files.length)
+                    return [this.Hint()];
+                return files.map((_, index) => this.Video(index));
             }
             file_drop(file) {
                 this.files(this.files().filter(f => f !== file));

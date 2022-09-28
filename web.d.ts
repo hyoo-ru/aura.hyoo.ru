@@ -859,6 +859,7 @@ declare namespace $ {
     class $hyoo_aura extends $mol_drop {
         files(next?: any): readonly any[];
         Sub(): $mol_stack;
+        Hint(): $mol_view;
         video_uri(id: any): string;
         shape_drop(id: any, next?: any): any;
         Video(id: any): $$.$hyoo_aura_video;
@@ -906,7 +907,7 @@ declare namespace $.$$ {
     export class $hyoo_aura extends $.$hyoo_aura {
         receive(transfer: DataTransfer): void;
         files_add(files: File[]): File[];
-        shapes(): $hyoo_aura_video[];
+        shapes(): $hyoo_aura_video[] | $mol_view[];
         file_drop(file: Entry): void;
         video_uri(index: number): any;
         shape_drop(index: number): void;

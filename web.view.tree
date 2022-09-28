@@ -96,6 +96,7 @@ $hyoo_aura $mol_drop
 			<= Video*0 $hyoo_aura_video
 				uri <= video_uri* \
 				drop? <=> shape_drop*? null
+	Hint $mol_view sub / \Drop videos here
 
 $hyoo_aura_video $mol_view
 	- anchor? /number
