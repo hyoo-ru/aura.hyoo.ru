@@ -2854,6 +2854,11 @@ var $;
 var $;
 (function ($) {
     class $mol_drop extends $mol_ghost {
+        enabled(next) {
+            if (next !== undefined)
+                return next;
+            return true;
+        }
         event() {
             return {
                 dragenter: (event) => this.enter(event),
@@ -2905,6 +2910,9 @@ var $;
     }
     __decorate([
         $mol_mem
+    ], $mol_drop.prototype, "enabled", null);
+    __decorate([
+        $mol_mem
     ], $mol_drop.prototype, "adopt", null);
     __decorate([
         $mol_mem
@@ -2939,6 +2947,8 @@ var $;
             enter(event) {
                 if (event.defaultPrevented)
                     return;
+                if (!this.enabled())
+                    return;
                 this.status('drag');
                 this._target = event.target;
                 event.dataTransfer.dropEffect = 'move';
@@ -2946,6 +2956,8 @@ var $;
             }
             move(event) {
                 if (event.defaultPrevented)
+                    return;
+                if (!this.enabled())
                     return;
                 event.dataTransfer.dropEffect = 'move';
                 event.preventDefault();
