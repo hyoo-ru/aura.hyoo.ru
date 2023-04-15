@@ -644,16 +644,9 @@ declare namespace $.$$ {
 declare namespace $ {
     class $mol_drop extends $mol_ghost {
         enabled(next?: any): boolean;
-        event(): {
-            dragenter: (event?: any) => any;
-            dragover: (event?: any) => any;
-            dragleave: (event?: any) => any;
-            drop: (event?: any) => any;
-        };
-        attr(): {
-            mol_drop_status: string;
-        };
-        adopt(transfer?: any): {};
+        event(): Record<string, any>;
+        attr(): Record<string, any>;
+        adopt(transfer?: any): Record<string, any>;
         receive(transfer?: any): any;
         allow(): readonly any[];
         enter(event?: any): any;
@@ -787,17 +780,8 @@ declare namespace $ {
         draw_start(event?: any): any;
         draw(event?: any): any;
         draw_end(event?: any): any;
-        style(): {
-            "touch-action": string;
-            "overscroll-behavior": string;
-        };
-        event(): {
-            pointerdown: (event?: any) => any;
-            pointermove: (event?: any) => any;
-            pointerup: (event?: any) => any;
-            pointerleave: (event?: any) => any;
-            wheel: (event?: any) => any;
-        };
+        style(): Record<string, any>;
+        event(): Record<string, any>;
         event_start(event?: any): any;
         event_move(event?: any): any;
         event_end(event?: any): any;
@@ -834,21 +818,8 @@ declare namespace $ {
         volume(val?: any): number;
         time(val?: any): number;
         duration(): number;
-        attr(): {
-            src: string;
-            controls: boolean;
-            autoplay: boolean;
-            loop: boolean;
-            poster: string;
-        };
-        event(): {
-            volumechange: (event?: any) => any;
-            timeupdate: (event?: any) => any;
-            durationchange: (event?: any) => any;
-            playing: (event?: any) => any;
-            play: (event?: any) => any;
-            pause: (event?: any) => any;
-        };
+        attr(): Record<string, any>;
+        event(): Record<string, any>;
         uri(): string;
         controls(): boolean;
         autoplay(): boolean;
@@ -892,10 +863,7 @@ declare namespace $ {
     class $hyoo_aura_video extends $mol_view {
         sub(): readonly any[];
         plugins(): readonly any[];
-        event(): {
-            dblclick: (next?: any) => any;
-            wheel: (next?: any) => any;
-        };
+        event(): Record<string, any>;
         uri(): string;
         transform(): string;
         aspect(next?: any): number;
@@ -910,10 +878,7 @@ declare namespace $ {
         loop(): boolean;
         controls(): boolean;
         aspect(): number;
-        style(): {
-            transform: string;
-            "aspect-ratio": string;
-        };
+        style(): Record<string, any>;
         transform(): string;
         aspect_style(): string;
     }
