@@ -3734,6 +3734,5 @@ var $;
     $mol_style_attach("hyoo/aura/aura.view.css", "[hyoo_aura] {\n\toverflow: hidden;\n\tbackground: black;\n}\n\n[hyoo_aura_hint] {\n\tmargin: auto;\n}\n\n[hyoo_aura_video] {\n\twidth: 100%;\n\theight: 100%;\n}\n\n[hyoo_aura_video_output] {\n\tflex: 0 0 auto;\n\ttransform-origin: left top;\n\tobject-fit: cover;\n}\n");
 })($ || ($ = {}));
 //hyoo/aura/-css/aura.view.css.ts
-;
-export default $
-//# sourceMappingURL=web.mjs.map
+
+//# sourceMappingURL=web.js.map
