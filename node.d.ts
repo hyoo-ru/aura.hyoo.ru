@@ -965,7 +965,7 @@ declare namespace $ {
         move(event?: any): any;
         leave(event?: any): any;
         drop(event?: any): any;
-        status(val?: any): string;
+        status(next?: any): string;
     }
 }
 
@@ -1064,31 +1064,31 @@ declare namespace $ {
 
 declare namespace $ {
     class $mol_touch extends $mol_plugin {
-        start_zoom(val?: any): number;
-        start_distance(val?: any): number;
-        zoom(val?: any): number;
+        start_zoom(next?: any): number;
+        start_distance(next?: any): number;
+        zoom(next?: any): number;
         allow_draw(): boolean;
         allow_pan(): boolean;
         allow_zoom(): boolean;
-        action_type(val?: any): string;
-        action_point(val?: any): $mol_vector_2d<number>;
-        start_pan(val?: any): readonly any[];
-        pan(val?: any): $mol_vector_2d<number>;
+        action_type(next?: any): string;
+        action_point(next?: any): $mol_vector_2d<number>;
+        start_pan(next?: any): readonly any[];
+        pan(next?: any): $mol_vector_2d<number>;
         pointer_center(): $mol_vector_2d<number>;
-        start_pos(val?: any): any;
+        start_pos(next?: any): any;
         swipe_precision(): number;
-        swipe_right(val?: any): any;
-        swipe_bottom(val?: any): any;
-        swipe_left(val?: any): any;
-        swipe_top(val?: any): any;
-        swipe_from_right(val?: any): any;
-        swipe_from_bottom(val?: any): any;
-        swipe_from_left(val?: any): any;
-        swipe_from_top(val?: any): any;
-        swipe_to_right(val?: any): any;
-        swipe_to_bottom(val?: any): any;
-        swipe_to_left(val?: any): any;
-        swipe_to_top(val?: any): any;
+        swipe_right(next?: any): any;
+        swipe_bottom(next?: any): any;
+        swipe_left(next?: any): any;
+        swipe_top(next?: any): any;
+        swipe_from_right(next?: any): any;
+        swipe_from_bottom(next?: any): any;
+        swipe_from_left(next?: any): any;
+        swipe_from_top(next?: any): any;
+        swipe_to_right(next?: any): any;
+        swipe_to_bottom(next?: any): any;
+        swipe_to_left(next?: any): any;
+        swipe_to_top(next?: any): any;
         draw_start(event?: any): any;
         draw(event?: any): any;
         draw_end(event?: any): any;
@@ -1126,9 +1126,9 @@ declare namespace $.$$ {
 declare namespace $ {
     class $mol_video_player extends $mol_view {
         dom_name(): string;
-        playing(val?: any): boolean;
-        volume(val?: any): number;
-        time(val?: any): number;
+        playing(next?: any): boolean;
+        volume(next?: any): number;
+        time(next?: any): number;
         duration(): number;
         attr(): Record<string, any>;
         field(): Record<string, any>;

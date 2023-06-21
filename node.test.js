@@ -3126,9 +3126,9 @@ var $;
                 return event;
             return null;
         }
-        status(val) {
-            if (val !== undefined)
-                return val;
+        status(next) {
+            if (next !== undefined)
+                return next;
             return "ready";
         }
     }
@@ -3362,19 +3362,19 @@ var $;
 var $;
 (function ($) {
     class $mol_touch extends $mol_plugin {
-        start_zoom(val) {
-            if (val !== undefined)
-                return val;
+        start_zoom(next) {
+            if (next !== undefined)
+                return next;
             return 0;
         }
-        start_distance(val) {
-            if (val !== undefined)
-                return val;
+        start_distance(next) {
+            if (next !== undefined)
+                return next;
             return 0;
         }
-        zoom(val) {
-            if (val !== undefined)
-                return val;
+        zoom(next) {
+            if (next !== undefined)
+                return next;
             return 1;
         }
         allow_draw() {
@@ -3386,28 +3386,28 @@ var $;
         allow_zoom() {
             return true;
         }
-        action_type(val) {
-            if (val !== undefined)
-                return val;
+        action_type(next) {
+            if (next !== undefined)
+                return next;
             return "";
         }
-        action_point(val) {
-            if (val !== undefined)
-                return val;
+        action_point(next) {
+            if (next !== undefined)
+                return next;
             const obj = new this.$.$mol_vector_2d(NaN, NaN);
             return obj;
         }
-        start_pan(val) {
-            if (val !== undefined)
-                return val;
+        start_pan(next) {
+            if (next !== undefined)
+                return next;
             return [
                 0,
                 0
             ];
         }
-        pan(val) {
-            if (val !== undefined)
-                return val;
+        pan(next) {
+            if (next !== undefined)
+                return next;
             const obj = new this.$.$mol_vector_2d(0, 0);
             return obj;
         }
@@ -3415,72 +3415,72 @@ var $;
             const obj = new this.$.$mol_vector_2d(NaN, NaN);
             return obj;
         }
-        start_pos(val) {
-            if (val !== undefined)
-                return val;
+        start_pos(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
         swipe_precision() {
             return 16;
         }
-        swipe_right(val) {
-            if (val !== undefined)
-                return val;
+        swipe_right(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_bottom(val) {
-            if (val !== undefined)
-                return val;
+        swipe_bottom(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_left(val) {
-            if (val !== undefined)
-                return val;
+        swipe_left(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_top(val) {
-            if (val !== undefined)
-                return val;
+        swipe_top(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_from_right(val) {
-            if (val !== undefined)
-                return val;
+        swipe_from_right(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_from_bottom(val) {
-            if (val !== undefined)
-                return val;
+        swipe_from_bottom(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_from_left(val) {
-            if (val !== undefined)
-                return val;
+        swipe_from_left(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_from_top(val) {
-            if (val !== undefined)
-                return val;
+        swipe_from_top(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_to_right(val) {
-            if (val !== undefined)
-                return val;
+        swipe_to_right(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_to_bottom(val) {
-            if (val !== undefined)
-                return val;
+        swipe_to_bottom(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_to_left(val) {
-            if (val !== undefined)
-                return val;
+        swipe_to_left(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
-        swipe_to_top(val) {
-            if (val !== undefined)
-                return val;
+        swipe_to_top(next) {
+            if (next !== undefined)
+                return next;
             return null;
         }
         draw_start(event) {
@@ -3885,19 +3885,19 @@ var $;
         dom_name() {
             return "video";
         }
-        playing(val) {
-            if (val !== undefined)
-                return val;
+        playing(next) {
+            if (next !== undefined)
+                return next;
             return false;
         }
-        volume(val) {
-            if (val !== undefined)
-                return val;
+        volume(next) {
+            if (next !== undefined)
+                return next;
             return 0;
         }
-        time(val) {
-            if (val !== undefined)
-                return val;
+        time(next) {
+            if (next !== undefined)
+                return next;
             return 0;
         }
         duration() {
@@ -6359,15 +6359,15 @@ var $;
 var $;
 (function ($) {
     class $mol_view_tree_test_binding extends $mol_view {
-        value(val) {
-            return this.task_title_new(val);
+        value(next) {
+            return this.task_title_new(next);
         }
         enabled() {
             return this.head_complete_enabled();
         }
-        task_title_new(val) {
-            if (val !== undefined)
-                return val;
+        task_title_new(next) {
+            if (next !== undefined)
+                return next;
             return "123";
         }
         head_complete_enabled() {
@@ -6448,9 +6448,9 @@ var $;
     ], $mol_view_tree_test_binding_right.prototype, "Test", null);
     $.$mol_view_tree_test_binding_right = $mol_view_tree_test_binding_right;
     class $mol_view_tree_test_binding_right_test extends $mol_view {
-        width(val) {
-            if (val !== undefined)
-                return val;
+        width(next) {
+            if (next !== undefined)
+                return next;
             return 0;
         }
     }
