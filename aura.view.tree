@@ -23,7 +23,7 @@ $hyoo_aura_video $mol_view
 			- draw? <=> move? null
 			- action_type => action_type
 			- action_point => action_point
-			pan? <=> pos? $mol_vector_2d /
+			pan? <=> pos? $mol_vector_2d<number> /
 				0
 				0
 	event *
