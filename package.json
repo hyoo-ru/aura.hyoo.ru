@@ -112,6 +112,7 @@
     "$mol_stack",
     "$mol_vector",
     "$mol_touch",
+    "$mol_type_enforce",
     "$mol_video_player",
     "$mol_video"
   ],

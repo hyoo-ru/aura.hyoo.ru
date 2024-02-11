@@ -327,6 +327,10 @@ declare namespace $ {
         insert(value: $mol_tree2 | null, ...path: $mol_tree2_path): $mol_tree2;
         select(...path: $mol_tree2_path): $mol_tree2;
         filter(path: string[], value?: string): $mol_tree2;
+        hack_self<Context extends {
+            span?: $mol_span;
+            [key: string]: unknown;
+        } = {}>(belt: $mol_tree2_belt<Context>, context?: Context): readonly $mol_tree2[];
         hack<Context extends {
             span?: $mol_span;
             [key: string]: unknown;
@@ -614,7 +618,7 @@ declare namespace $ {
     type $mol_style_unit_angle = 'deg' | 'rad' | 'grad' | 'turn';
     type $mol_style_unit_time = 's' | 'ms';
     type $mol_style_unit_any = $mol_style_unit_length | $mol_style_unit_angle | $mol_style_unit_time;
-    type $mol_style_unit_str<Quanity extends $mol_style_unit_any> = `${number}${Quanity}`;
+    type $mol_style_unit_str<Quanity extends $mol_style_unit_any = $mol_style_unit_any> = `${number}${Quanity}`;
     class $mol_style_unit<Literal extends $mol_style_unit_any> extends $mol_decor<number> {
         readonly literal: Literal;
         constructor(value: number, literal: Literal);
@@ -739,9 +743,9 @@ declare namespace $ {
         all?: Common;
         animation?: {
             composition?: Single_animation_composition | Single_animation_composition[][] | Common;
-            delay?: $mol_style_unit<$mol_style_unit_time> | $mol_style_unit<$mol_style_unit_time>[][] | Common;
+            delay?: $mol_style_unit_str<$mol_style_unit_time> | $mol_style_unit_str<$mol_style_unit_time>[][] | Common;
             direction?: Single_animation_direction | Single_animation_direction[][] | Common;
-            duration?: $mol_style_unit<$mol_style_unit_time> | $mol_style_unit<$mol_style_unit_time>[][] | Common;
+            duration?: $mol_style_unit_str<$mol_style_unit_time> | $mol_style_unit_str<$mol_style_unit_time>[][] | Common;
             fillMode?: Single_animation_fill_mode | Single_animation_fill_mode[][] | Common;
             iterationCount?: Single_animation_iteration_count | Single_animation_iteration_count[][] | Common;
             name?: 'none' | string & {} | ('none' | string & {})[][] | Common;
@@ -935,11 +939,14 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_ghost extends $mol_view {
-        Sub(): $mol_view;
-    }
+
+	export class $mol_ghost extends $mol_view {
+		Sub( ): $mol_view
+	}
+	
 }
 
+//# sourceMappingURL=ghost.view.tree.d.ts.map
 declare namespace $.$$ {
     class $mol_ghost extends $.$mol_ghost {
         dom_node_external(next?: Element): Element;
@@ -952,21 +959,31 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_drop extends $mol_ghost {
-        enabled(next?: any): boolean;
-        event(): Record<string, any>;
-        attr(): Record<string, any>;
-        adopt(transfer?: any): Record<string, any>;
-        receive(transfer?: any): any;
-        allow(): readonly any[];
-        enter(event?: any): any;
-        move(event?: any): any;
-        leave(event?: any): any;
-        drop(event?: any): any;
-        status(next?: any): string;
-    }
+
+	export class $mol_drop extends $mol_ghost {
+		enabled( next?: boolean ): boolean
+		event( ): ({ 
+			dragenter( next?: ReturnType< $mol_drop['enter'] > ): ReturnType< $mol_drop['enter'] >,
+			dragover( next?: ReturnType< $mol_drop['move'] > ): ReturnType< $mol_drop['move'] >,
+			dragleave( next?: ReturnType< $mol_drop['leave'] > ): ReturnType< $mol_drop['leave'] >,
+			drop( next?: ReturnType< $mol_drop['drop'] > ): ReturnType< $mol_drop['drop'] >,
+		}) 
+		attr( ): ({ 
+			'mol_drop_status': ReturnType< $mol_drop['status'] >,
+		}) 
+		adopt( next?: Record<string, any> ): Record<string, any>
+		receive( next?: any ): any
+		allow( ): readonly(any)[]
+		enter( next?: any ): any
+		move( next?: any ): any
+		leave( next?: any ): any
+		drop( next?: any ): any
+		status( next?: string ): string
+	}
+	
 }
 
+//# sourceMappingURL=drop.view.tree.d.ts.map
 declare namespace $.$$ {
     class $mol_drop extends $.$mol_drop {
         status(next?: "ready" | "drag"): "ready" | "drag";
@@ -981,13 +998,16 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_stack extends $mol_view {
-    }
 }
 
 declare namespace $ {
+
+	export class $mol_stack extends $mol_view {
+	}
+	
 }
 
+//# sourceMappingURL=stack.view.tree.d.ts.map
 declare namespace $ {
     class $mol_vector<Value, Length extends number> extends Array<Value> {
         get length(): Length;
@@ -1061,45 +1081,76 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_touch extends $mol_plugin {
-        start_zoom(next?: any): number;
-        start_distance(next?: any): number;
-        zoom(next?: any): number;
-        allow_draw(): boolean;
-        allow_pan(): boolean;
-        allow_zoom(): boolean;
-        action_type(next?: any): string;
-        action_point(next?: any): $mol_vector_2d<number>;
-        start_pan(next?: any): readonly any[];
-        pan(next?: any): $mol_vector_2d<number>;
-        pointer_center(): $mol_vector_2d<number>;
-        start_pos(next?: any): any;
-        swipe_precision(): number;
-        swipe_right(next?: any): any;
-        swipe_bottom(next?: any): any;
-        swipe_left(next?: any): any;
-        swipe_top(next?: any): any;
-        swipe_from_right(next?: any): any;
-        swipe_from_bottom(next?: any): any;
-        swipe_from_left(next?: any): any;
-        swipe_from_top(next?: any): any;
-        swipe_to_right(next?: any): any;
-        swipe_to_bottom(next?: any): any;
-        swipe_to_left(next?: any): any;
-        swipe_to_top(next?: any): any;
-        draw_start(event?: any): any;
-        draw(event?: any): any;
-        draw_end(event?: any): any;
-        style(): Record<string, any>;
-        event(): Record<string, any>;
-        event_start(event?: any): any;
-        event_move(event?: any): any;
-        event_end(event?: any): any;
-        event_leave(event?: any): any;
-        event_wheel(event?: any): any;
-    }
+    type $mol_type_enforce<Actual extends Expected, Expected> = Actual;
 }
 
+declare namespace $ {
+
+	type $mol_vector_2d__6EMMV2PY = $mol_type_enforce<
+		[ number, number ]
+		,
+		ConstructorParameters< typeof $mol_vector_2d<number> >
+	>
+	type $mol_vector_2d__V4SKVYH0 = $mol_type_enforce<
+		[ number, number ]
+		,
+		ConstructorParameters< typeof $mol_vector_2d<number> >
+	>
+	type $mol_vector_2d__S17TG0LE = $mol_type_enforce<
+		[ number, number ]
+		,
+		ConstructorParameters< typeof $mol_vector_2d<number> >
+	>
+	export class $mol_touch extends $mol_plugin {
+		start_zoom( next?: number ): number
+		start_distance( next?: number ): number
+		zoom( next?: number ): number
+		allow_draw( ): boolean
+		allow_pan( ): boolean
+		allow_zoom( ): boolean
+		action_type( next?: string ): string
+		action_point( next?: $mol_vector_2d<number> ): $mol_vector_2d<number>
+		start_pan( next?: readonly(any)[] ): readonly(any)[]
+		pan( next?: $mol_vector_2d<number> ): $mol_vector_2d<number>
+		pointer_center( ): $mol_vector_2d<number>
+		start_pos( next?: any ): any
+		swipe_precision( ): number
+		swipe_right( next?: any ): any
+		swipe_bottom( next?: any ): any
+		swipe_left( next?: any ): any
+		swipe_top( next?: any ): any
+		swipe_from_right( next?: any ): any
+		swipe_from_bottom( next?: any ): any
+		swipe_from_left( next?: any ): any
+		swipe_from_top( next?: any ): any
+		swipe_to_right( next?: any ): any
+		swipe_to_bottom( next?: any ): any
+		swipe_to_left( next?: any ): any
+		swipe_to_top( next?: any ): any
+		draw_start( next?: any ): any
+		draw( next?: any ): any
+		draw_end( next?: any ): any
+		style( ): ({ 
+			'touch-action': string,
+			'overscroll-behavior': string,
+		})  & ReturnType< $mol_plugin['style'] >
+		event( ): ({ 
+			pointerdown( next?: ReturnType< $mol_touch['event_start'] > ): ReturnType< $mol_touch['event_start'] >,
+			pointermove( next?: ReturnType< $mol_touch['event_move'] > ): ReturnType< $mol_touch['event_move'] >,
+			pointerup( next?: ReturnType< $mol_touch['event_end'] > ): ReturnType< $mol_touch['event_end'] >,
+			pointerleave( next?: ReturnType< $mol_touch['event_leave'] > ): ReturnType< $mol_touch['event_leave'] >,
+			wheel( next?: ReturnType< $mol_touch['event_wheel'] > ): ReturnType< $mol_touch['event_wheel'] >,
+		})  & ReturnType< $mol_plugin['event'] >
+		event_start( next?: any ): any
+		event_move( next?: any ): any
+		event_end( next?: any ): any
+		event_leave( next?: any ): any
+		event_wheel( next?: any ): any
+	}
+	
+}
+
+//# sourceMappingURL=touch.view.tree.d.ts.map
 declare namespace $.$$ {
     class $mol_touch extends $.$mol_touch {
         auto(): void;
@@ -1122,31 +1173,50 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_video_player extends $mol_view {
-        dom_name(): string;
-        playing(next?: any): boolean;
-        volume(next?: any): number;
-        time(next?: any): number;
-        duration(): number;
-        attr(): Record<string, any>;
-        field(): Record<string, any>;
-        event(): Record<string, any>;
-        uri(): string;
-        controls(): boolean;
-        autoplay(): boolean;
-        inline(): boolean;
-        loop(): boolean;
-        poster(): string;
-        stream(): any;
-        revolume(event?: any): any;
-        retime(event?: any): any;
-        redurate(event?: any): any;
-        play_started(event?: any): any;
-        play(event?: any): any;
-        pause(event?: any): any;
-    }
+
+	export class $mol_video_player extends $mol_view {
+		dom_name( ): string
+		playing( next?: boolean ): boolean
+		volume( next?: number ): number
+		time( next?: number ): number
+		duration( ): number
+		attr( ): ({ 
+			'src': ReturnType< $mol_video_player['uri'] >,
+			'controls': ReturnType< $mol_video_player['controls'] >,
+			'autoplay': ReturnType< $mol_video_player['autoplay'] >,
+			'playsinline': ReturnType< $mol_video_player['inline'] >,
+			'loop': ReturnType< $mol_video_player['loop'] >,
+			'poster': ReturnType< $mol_video_player['poster'] >,
+		}) 
+		field( ): ({ 
+			'srcObject': ReturnType< $mol_video_player['stream'] >,
+		}) 
+		event( ): ({ 
+			volumechange( next?: ReturnType< $mol_video_player['revolume'] > ): ReturnType< $mol_video_player['revolume'] >,
+			timeupdate( next?: ReturnType< $mol_video_player['retime'] > ): ReturnType< $mol_video_player['retime'] >,
+			durationchange( next?: ReturnType< $mol_video_player['redurate'] > ): ReturnType< $mol_video_player['redurate'] >,
+			playing( next?: ReturnType< $mol_video_player['play_started'] > ): ReturnType< $mol_video_player['play_started'] >,
+			play( next?: ReturnType< $mol_video_player['play'] > ): ReturnType< $mol_video_player['play'] >,
+			pause( next?: ReturnType< $mol_video_player['pause'] > ): ReturnType< $mol_video_player['pause'] >,
+		}) 
+		uri( ): string
+		controls( ): boolean
+		autoplay( ): boolean
+		inline( ): boolean
+		loop( ): boolean
+		poster( ): string
+		stream( ): any
+		revolume( next?: any ): any
+		retime( next?: any ): any
+		redurate( next?: any ): any
+		play_started( next?: any ): any
+		play( next?: any ): any
+		pause( next?: any ): any
+	}
+	
 }
 
+//# sourceMappingURL=player.view.tree.d.ts.map
 declare namespace $.$$ {
     class $mol_video_player extends $.$mol_video_player {
         dom_node(): HTMLVideoElement;
@@ -1163,40 +1233,106 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $hyoo_aura extends $mol_drop {
-        files(next?: any): readonly any[];
-        Sub(): $mol_stack;
-        Hint(): $mol_view;
-        video_uri(id: any): string;
-        shape_drop(id: any, next?: any): any;
-        Video(id: any): $$.$hyoo_aura_video;
-        shapes(): readonly any[];
-        Pane(): $mol_stack;
-    }
-    class $hyoo_aura_video extends $mol_view {
-        sub(): readonly any[];
-        plugins(): readonly any[];
-        event(): Record<string, any>;
-        uri(): string;
-        transform(): string;
-        aspect(next?: any): number;
-        Output(): $$.$hyoo_aura_video_output;
-        zoom(next?: any): number;
-        pos(next?: any): $mol_vector_2d<number>;
-        Touch(): $$.$mol_touch;
-        drop(next?: any): any;
-        wheel(next?: any): any;
-    }
-    class $hyoo_aura_video_output extends $mol_video_player {
-        loop(): boolean;
-        controls(): boolean;
-        aspect(): number;
-        style(): Record<string, any>;
-        transform(): string;
-        aspect_style(): string;
-    }
+
+	type $mol_view__sub__58FF15BS = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $hyoo_aura_video__uri__R4VN0S2U = $mol_type_enforce<
+		ReturnType< $hyoo_aura['video_uri'] >
+		,
+		ReturnType< $hyoo_aura_video['uri'] >
+	>
+	type $hyoo_aura_video__drop__34WFF50C = $mol_type_enforce<
+		ReturnType< $hyoo_aura['shape_drop'] >
+		,
+		ReturnType< $hyoo_aura_video['drop'] >
+	>
+	type $mol_stack__sub__41KXYJ3B = $mol_type_enforce<
+		ReturnType< $hyoo_aura['shapes'] >
+		,
+		ReturnType< $mol_stack['sub'] >
+	>
+	export class $hyoo_aura extends $mol_drop {
+		files( next?: readonly(any)[] ): readonly(any)[]
+		Sub( ): ReturnType< $hyoo_aura['Pane'] >
+		Hint( ): $mol_view
+		video_uri( id: any): string
+		shape_drop( id: any, next?: any ): any
+		Video( id: any): $hyoo_aura_video
+		shapes( ): readonly(any)[]
+		Pane( ): $mol_stack
+	}
+	
+	type $hyoo_aura_video_output__uri__XRSECK74 = $mol_type_enforce<
+		ReturnType< $hyoo_aura_video['uri'] >
+		,
+		ReturnType< $hyoo_aura_video_output['uri'] >
+	>
+	type $hyoo_aura_video_output__transform__KGX0O5CC = $mol_type_enforce<
+		ReturnType< $hyoo_aura_video['transform'] >
+		,
+		ReturnType< $hyoo_aura_video_output['transform'] >
+	>
+	type $hyoo_aura_video_output__aspect__8IKREKHQ = $mol_type_enforce<
+		ReturnType< $hyoo_aura_video['aspect'] >
+		,
+		ReturnType< $hyoo_aura_video_output['aspect'] >
+	>
+	type $mol_vector_2d__2HSQEOM4 = $mol_type_enforce<
+		[ number, number ]
+		,
+		ConstructorParameters< typeof $mol_vector_2d<number> >
+	>
+	type $mol_touch__allow_draw__A15SSW4Y = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $mol_touch['allow_draw'] >
+	>
+	type $mol_touch__zoom__KRZZ4J5L = $mol_type_enforce<
+		ReturnType< $hyoo_aura_video['zoom'] >
+		,
+		ReturnType< $mol_touch['zoom'] >
+	>
+	type $mol_touch__pan__0TTTKBQA = $mol_type_enforce<
+		ReturnType< $hyoo_aura_video['pos'] >
+		,
+		ReturnType< $mol_touch['pan'] >
+	>
+	export class $hyoo_aura_video extends $mol_view {
+		sub( ): readonly(any)[]
+		plugins( ): readonly(any)[]
+		event( ): ({ 
+			dblclick( next?: ReturnType< $hyoo_aura_video['drop'] > ): ReturnType< $hyoo_aura_video['drop'] >,
+			wheel( next?: ReturnType< $hyoo_aura_video['wheel'] > ): ReturnType< $hyoo_aura_video['wheel'] >,
+		})  & ReturnType< $mol_view['event'] >
+		uri( ): string
+		transform( ): string
+		aspect( next?: number ): number
+		Output( ): $hyoo_aura_video_output
+		zoom( next?: number ): number
+		pos( next?: $mol_vector_2d<number> ): $mol_vector_2d<number>
+		Touch( ): $mol_touch
+		drop( next?: any ): any
+		wheel( next?: any ): any
+	}
+	
+	export class $hyoo_aura_video_output extends $mol_video_player {
+		loop( ): boolean
+		controls( ): boolean
+		aspect( ): number
+		style( ): ({ 
+			'transform': ReturnType< $hyoo_aura_video_output['transform'] >,
+			'aspect-ratio': ReturnType< $hyoo_aura_video_output['aspect_style'] >,
+		})  & ReturnType< $mol_video_player['style'] >
+		transform( ): string
+		aspect_style( ): string
+	}
+	
 }
 
+//# sourceMappingURL=aura.view.tree.d.ts.map
 declare namespace $.$$ {
     type Entry = {
         title: string;
@@ -1205,7 +1341,7 @@ declare namespace $.$$ {
     export class $hyoo_aura extends $.$hyoo_aura {
         receive(transfer: DataTransfer): void;
         files_add(files: File[]): File[];
-        shapes(): $hyoo_aura_video[] | $mol_view[];
+        shapes(): $mol_view[] | $.$hyoo_aura_video[];
         file_drop(file: Entry): void;
         video_uri(index: number): any;
         shape_drop(index: number): void;
@@ -1224,3 +1360,4 @@ declare namespace $ {
 }
 
 export = $;
+//# sourceMappingURL=node.d.ts.map
