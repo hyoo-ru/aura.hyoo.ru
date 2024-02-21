@@ -840,6 +840,11 @@ declare namespace $.$$ {
 declare namespace $ {
 
 	export class $mol_drop extends $mol_ghost {
+		enter( next?: any ): any
+		move( next?: any ): any
+		leave( next?: any ): any
+		drop( next?: any ): any
+		status( next?: string ): string
 		enabled( next?: boolean ): boolean
 		event( ): ({ 
 			dragenter( next?: ReturnType< $mol_drop['enter'] > ): ReturnType< $mol_drop['enter'] >,
@@ -853,11 +858,6 @@ declare namespace $ {
 		adopt( next?: Record<string, any> ): Record<string, any>
 		receive( next?: any ): any
 		allow( ): readonly(any)[]
-		enter( next?: any ): any
-		move( next?: any ): any
-		leave( next?: any ): any
-		drop( next?: any ): any
-		status( next?: string ): string
 	}
 	
 }
@@ -965,22 +965,27 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_vector_2d__VWGAQNUF = $mol_type_enforce<
+	type $mol_vector_2d__8RI46V94 = $mol_type_enforce<
 		[ number, number ]
 		,
 		ConstructorParameters< typeof $mol_vector_2d<number> >
 	>
-	type $mol_vector_2d__HHHLZSKZ = $mol_type_enforce<
+	type $mol_vector_2d__RMWDPJWE = $mol_type_enforce<
 		[ number, number ]
 		,
 		ConstructorParameters< typeof $mol_vector_2d<number> >
 	>
-	type $mol_vector_2d__INP59EIC = $mol_type_enforce<
+	type $mol_vector_2d__WO8O5QAA = $mol_type_enforce<
 		[ number, number ]
 		,
 		ConstructorParameters< typeof $mol_vector_2d<number> >
 	>
 	export class $mol_touch extends $mol_plugin {
+		event_start( next?: any ): any
+		event_move( next?: any ): any
+		event_end( next?: any ): any
+		event_leave( next?: any ): any
+		event_wheel( next?: any ): any
 		start_zoom( next?: number ): number
 		start_distance( next?: number ): number
 		zoom( next?: number ): number
@@ -1020,11 +1025,6 @@ declare namespace $ {
 			pointerleave( next?: ReturnType< $mol_touch['event_leave'] > ): ReturnType< $mol_touch['event_leave'] >,
 			wheel( next?: ReturnType< $mol_touch['event_wheel'] > ): ReturnType< $mol_touch['event_wheel'] >,
 		})  & ReturnType< $mol_plugin['event'] >
-		event_start( next?: any ): any
-		event_move( next?: any ): any
-		event_end( next?: any ): any
-		event_leave( next?: any ): any
-		event_wheel( next?: any ): any
 	}
 	
 }
@@ -1054,6 +1054,19 @@ declare namespace $.$$ {
 declare namespace $ {
 
 	export class $mol_video_player extends $mol_view {
+		uri( ): string
+		controls( ): boolean
+		autoplay( ): boolean
+		inline( ): boolean
+		loop( ): boolean
+		poster( ): string
+		stream( ): any
+		revolume( next?: any ): any
+		retime( next?: any ): any
+		redurate( next?: any ): any
+		play_started( next?: any ): any
+		play( next?: any ): any
+		pause( next?: any ): any
 		dom_name( ): string
 		playing( next?: boolean ): boolean
 		volume( next?: number ): number
@@ -1078,19 +1091,6 @@ declare namespace $ {
 			play( next?: ReturnType< $mol_video_player['play'] > ): ReturnType< $mol_video_player['play'] >,
 			pause( next?: ReturnType< $mol_video_player['pause'] > ): ReturnType< $mol_video_player['pause'] >,
 		}) 
-		uri( ): string
-		controls( ): boolean
-		autoplay( ): boolean
-		inline( ): boolean
-		loop( ): boolean
-		poster( ): string
-		stream( ): any
-		revolume( next?: any ): any
-		retime( next?: any ): any
-		redurate( next?: any ): any
-		play_started( next?: any ): any
-		play( next?: any ): any
-		pause( next?: any ): any
 	}
 	
 }
@@ -1113,79 +1113,73 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_view__sub__9XK3P79T = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $hyoo_aura_video__uri__R3OEGU4Z = $mol_type_enforce<
+	type $hyoo_aura_video__uri__INJET3E2 = $mol_type_enforce<
 		ReturnType< $hyoo_aura['video_uri'] >
 		,
 		ReturnType< $hyoo_aura_video['uri'] >
 	>
-	type $hyoo_aura_video__drop__SBGHMRZV = $mol_type_enforce<
+	type $hyoo_aura_video__drop__045U922T = $mol_type_enforce<
 		ReturnType< $hyoo_aura['shape_drop'] >
 		,
 		ReturnType< $hyoo_aura_video['drop'] >
 	>
-	type $mol_stack__sub__GOU2K2HA = $mol_type_enforce<
+	type $mol_stack__sub__ZISBXM3V = $mol_type_enforce<
 		ReturnType< $hyoo_aura['shapes'] >
 		,
 		ReturnType< $mol_stack['sub'] >
 	>
+	type $mol_view__sub__AHRXY5XV = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
 	export class $hyoo_aura extends $mol_drop {
-		files( next?: readonly(any)[] ): readonly(any)[]
-		Sub( ): ReturnType< $hyoo_aura['Pane'] >
-		Hint( ): $mol_view
 		video_uri( id: any): string
 		shape_drop( id: any, next?: any ): any
 		Video( id: any): $hyoo_aura_video
 		shapes( ): readonly(any)[]
 		Pane( ): $mol_stack
+		files( next?: readonly(any)[] ): readonly(any)[]
+		Sub( ): ReturnType< $hyoo_aura['Pane'] >
+		Hint( ): $mol_view
 	}
 	
-	type $hyoo_aura_video_output__uri__SEBHG0MK = $mol_type_enforce<
+	type $hyoo_aura_video_output__uri__G81YOLJ8 = $mol_type_enforce<
 		ReturnType< $hyoo_aura_video['uri'] >
 		,
 		ReturnType< $hyoo_aura_video_output['uri'] >
 	>
-	type $hyoo_aura_video_output__transform__GZW76GED = $mol_type_enforce<
+	type $hyoo_aura_video_output__transform__BFSLEVF2 = $mol_type_enforce<
 		ReturnType< $hyoo_aura_video['transform'] >
 		,
 		ReturnType< $hyoo_aura_video_output['transform'] >
 	>
-	type $hyoo_aura_video_output__aspect__R0BWKL44 = $mol_type_enforce<
+	type $hyoo_aura_video_output__aspect__O4V1QY0Z = $mol_type_enforce<
 		ReturnType< $hyoo_aura_video['aspect'] >
 		,
 		ReturnType< $hyoo_aura_video_output['aspect'] >
 	>
-	type $mol_vector_2d__FF4D03Z4 = $mol_type_enforce<
+	type $mol_vector_2d__T6LWCG1Y = $mol_type_enforce<
 		[ number, number ]
 		,
 		ConstructorParameters< typeof $mol_vector_2d<number> >
 	>
-	type $mol_touch__allow_draw__D6LIIQDF = $mol_type_enforce<
+	type $mol_touch__allow_draw__T8TT2ZBI = $mol_type_enforce<
 		boolean
 		,
 		ReturnType< $mol_touch['allow_draw'] >
 	>
-	type $mol_touch__zoom__66XTAQZ9 = $mol_type_enforce<
+	type $mol_touch__zoom__WD02WACO = $mol_type_enforce<
 		ReturnType< $hyoo_aura_video['zoom'] >
 		,
 		ReturnType< $mol_touch['zoom'] >
 	>
-	type $mol_touch__pan__UY429KTB = $mol_type_enforce<
+	type $mol_touch__pan__U13AGJ3O = $mol_type_enforce<
 		ReturnType< $hyoo_aura_video['pos'] >
 		,
 		ReturnType< $mol_touch['pan'] >
 	>
 	export class $hyoo_aura_video extends $mol_view {
-		sub( ): readonly(any)[]
-		plugins( ): readonly(any)[]
-		event( ): ({ 
-			dblclick( next?: ReturnType< $hyoo_aura_video['drop'] > ): ReturnType< $hyoo_aura_video['drop'] >,
-			wheel( next?: ReturnType< $hyoo_aura_video['wheel'] > ): ReturnType< $hyoo_aura_video['wheel'] >,
-		})  & ReturnType< $mol_view['event'] >
 		uri( ): string
 		transform( ): string
 		aspect( next?: number ): number
@@ -1195,9 +1189,17 @@ declare namespace $ {
 		Touch( ): $mol_touch
 		drop( next?: any ): any
 		wheel( next?: any ): any
+		sub( ): readonly(any)[]
+		plugins( ): readonly(any)[]
+		event( ): ({ 
+			dblclick( next?: ReturnType< $hyoo_aura_video['drop'] > ): ReturnType< $hyoo_aura_video['drop'] >,
+			wheel( next?: ReturnType< $hyoo_aura_video['wheel'] > ): ReturnType< $hyoo_aura_video['wheel'] >,
+		})  & ReturnType< $mol_view['event'] >
 	}
 	
 	export class $hyoo_aura_video_output extends $mol_video_player {
+		transform( ): string
+		aspect_style( ): string
 		loop( ): boolean
 		controls( ): boolean
 		aspect( ): number
@@ -1205,8 +1207,6 @@ declare namespace $ {
 			'transform': ReturnType< $hyoo_aura_video_output['transform'] >,
 			'aspect-ratio': ReturnType< $hyoo_aura_video_output['aspect_style'] >,
 		})  & ReturnType< $mol_video_player['style'] >
-		transform( ): string
-		aspect_style( ): string
 	}
 	
 }

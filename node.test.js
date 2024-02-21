@@ -3156,6 +3156,26 @@ var $;
 
 ;
 	($.$mol_drop) = class $mol_drop extends ($.$mol_ghost) {
+		enter(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		move(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		leave(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		drop(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		status(next){
+			if(next !== undefined) return next;
+			return "ready";
+		}
 		enabled(next){
 			if(next !== undefined) return next;
 			return true;
@@ -3186,35 +3206,15 @@ var $;
 				"link"
 			];
 		}
-		enter(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		move(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		leave(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		drop(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		status(next){
-			if(next !== undefined) return next;
-			return "ready";
-		}
 	};
-	($mol_mem(($.$mol_drop.prototype), "enabled"));
-	($mol_mem(($.$mol_drop.prototype), "adopt"));
-	($mol_mem(($.$mol_drop.prototype), "receive"));
 	($mol_mem(($.$mol_drop.prototype), "enter"));
 	($mol_mem(($.$mol_drop.prototype), "move"));
 	($mol_mem(($.$mol_drop.prototype), "leave"));
 	($mol_mem(($.$mol_drop.prototype), "drop"));
 	($mol_mem(($.$mol_drop.prototype), "status"));
+	($mol_mem(($.$mol_drop.prototype), "enabled"));
+	($mol_mem(($.$mol_drop.prototype), "adopt"));
+	($mol_mem(($.$mol_drop.prototype), "receive"));
 
 
 ;
@@ -3418,6 +3418,26 @@ var $;
 
 ;
 	($.$mol_touch) = class $mol_touch extends ($.$mol_plugin) {
+		event_start(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_move(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_end(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_leave(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_wheel(next){
+			if(next !== undefined) return next;
+			return null;
+		}
 		start_zoom(next){
 			if(next !== undefined) return next;
 			return 0;
@@ -3545,27 +3565,12 @@ var $;
 				"wheel": (next) => (this.event_wheel(next))
 			};
 		}
-		event_start(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_move(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_end(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_leave(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_wheel(next){
-			if(next !== undefined) return next;
-			return null;
-		}
 	};
+	($mol_mem(($.$mol_touch.prototype), "event_start"));
+	($mol_mem(($.$mol_touch.prototype), "event_move"));
+	($mol_mem(($.$mol_touch.prototype), "event_end"));
+	($mol_mem(($.$mol_touch.prototype), "event_leave"));
+	($mol_mem(($.$mol_touch.prototype), "event_wheel"));
 	($mol_mem(($.$mol_touch.prototype), "start_zoom"));
 	($mol_mem(($.$mol_touch.prototype), "start_distance"));
 	($mol_mem(($.$mol_touch.prototype), "zoom"));
@@ -3590,11 +3595,6 @@ var $;
 	($mol_mem(($.$mol_touch.prototype), "draw_start"));
 	($mol_mem(($.$mol_touch.prototype), "draw"));
 	($mol_mem(($.$mol_touch.prototype), "draw_end"));
-	($mol_mem(($.$mol_touch.prototype), "event_start"));
-	($mol_mem(($.$mol_touch.prototype), "event_move"));
-	($mol_mem(($.$mol_touch.prototype), "event_end"));
-	($mol_mem(($.$mol_touch.prototype), "event_leave"));
-	($mol_mem(($.$mol_touch.prototype), "event_wheel"));
 
 
 ;
@@ -3851,47 +3851,6 @@ var $;
 
 ;
 	($.$mol_video_player) = class $mol_video_player extends ($.$mol_view) {
-		dom_name(){
-			return "video";
-		}
-		playing(next){
-			if(next !== undefined) return next;
-			return false;
-		}
-		volume(next){
-			if(next !== undefined) return next;
-			return 0;
-		}
-		time(next){
-			if(next !== undefined) return next;
-			return 0;
-		}
-		duration(){
-			return 0;
-		}
-		attr(){
-			return {
-				"src": (this.uri()), 
-				"controls": (this.controls()), 
-				"autoplay": (this.autoplay()), 
-				"playsinline": (this.inline()), 
-				"loop": (this.loop()), 
-				"poster": (this.poster())
-			};
-		}
-		field(){
-			return {"srcObject": (this.stream())};
-		}
-		event(){
-			return {
-				"volumechange": (next) => (this.revolume(next)), 
-				"timeupdate": (next) => (this.retime(next)), 
-				"durationchange": (next) => (this.redurate(next)), 
-				"playing": (next) => (this.play_started(next)), 
-				"play": (next) => (this.play(next)), 
-				"pause": (next) => (this.pause(next))
-			};
-		}
 		uri(){
 			return "";
 		}
@@ -3937,16 +3896,57 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
+		dom_name(){
+			return "video";
+		}
+		playing(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		volume(next){
+			if(next !== undefined) return next;
+			return 0;
+		}
+		time(next){
+			if(next !== undefined) return next;
+			return 0;
+		}
+		duration(){
+			return 0;
+		}
+		attr(){
+			return {
+				"src": (this.uri()), 
+				"controls": (this.controls()), 
+				"autoplay": (this.autoplay()), 
+				"playsinline": (this.inline()), 
+				"loop": (this.loop()), 
+				"poster": (this.poster())
+			};
+		}
+		field(){
+			return {"srcObject": (this.stream())};
+		}
+		event(){
+			return {
+				"volumechange": (next) => (this.revolume(next)), 
+				"timeupdate": (next) => (this.retime(next)), 
+				"durationchange": (next) => (this.redurate(next)), 
+				"playing": (next) => (this.play_started(next)), 
+				"play": (next) => (this.play(next)), 
+				"pause": (next) => (this.pause(next))
+			};
+		}
 	};
-	($mol_mem(($.$mol_video_player.prototype), "playing"));
-	($mol_mem(($.$mol_video_player.prototype), "volume"));
-	($mol_mem(($.$mol_video_player.prototype), "time"));
 	($mol_mem(($.$mol_video_player.prototype), "revolume"));
 	($mol_mem(($.$mol_video_player.prototype), "retime"));
 	($mol_mem(($.$mol_video_player.prototype), "redurate"));
 	($mol_mem(($.$mol_video_player.prototype), "play_started"));
 	($mol_mem(($.$mol_video_player.prototype), "play"));
 	($mol_mem(($.$mol_video_player.prototype), "pause"));
+	($mol_mem(($.$mol_video_player.prototype), "playing"));
+	($mol_mem(($.$mol_video_player.prototype), "volume"));
+	($mol_mem(($.$mol_video_player.prototype), "time"));
 
 
 ;
@@ -4030,18 +4030,6 @@ var $;
 
 ;
 	($.$hyoo_aura) = class $hyoo_aura extends ($.$mol_drop) {
-		files(next){
-			if(next !== undefined) return next;
-			return [];
-		}
-		Sub(){
-			return (this.Pane());
-		}
-		Hint(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => (["Drop videos here"]);
-			return obj;
-		}
 		video_uri(id){
 			return "";
 		}
@@ -4063,26 +4051,25 @@ var $;
 			(obj.sub) = () => ((this.shapes()));
 			return obj;
 		}
+		files(next){
+			if(next !== undefined) return next;
+			return [];
+		}
+		Sub(){
+			return (this.Pane());
+		}
+		Hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => (["Drop videos here"]);
+			return obj;
+		}
 	};
-	($mol_mem(($.$hyoo_aura.prototype), "files"));
-	($mol_mem(($.$hyoo_aura.prototype), "Hint"));
 	($mol_mem_key(($.$hyoo_aura.prototype), "shape_drop"));
 	($mol_mem_key(($.$hyoo_aura.prototype), "Video"));
 	($mol_mem(($.$hyoo_aura.prototype), "Pane"));
+	($mol_mem(($.$hyoo_aura.prototype), "files"));
+	($mol_mem(($.$hyoo_aura.prototype), "Hint"));
 	($.$hyoo_aura_video) = class $hyoo_aura_video extends ($.$mol_view) {
-		sub(){
-			return [(this.Output())];
-		}
-		plugins(){
-			return [(this.Touch())];
-		}
-		event(){
-			return {
-				...(super.event()), 
-				"dblclick": (next) => (this.drop(next)), 
-				"wheel": (next) => (this.wheel(next))
-			};
-		}
 		uri(){
 			return "";
 		}
@@ -4124,6 +4111,19 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
+		sub(){
+			return [(this.Output())];
+		}
+		plugins(){
+			return [(this.Touch())];
+		}
+		event(){
+			return {
+				...(super.event()), 
+				"dblclick": (next) => (this.drop(next)), 
+				"wheel": (next) => (this.wheel(next))
+			};
+		}
 	};
 	($mol_mem(($.$hyoo_aura_video.prototype), "aspect"));
 	($mol_mem(($.$hyoo_aura_video.prototype), "Output"));
@@ -4133,6 +4133,12 @@ var $;
 	($mol_mem(($.$hyoo_aura_video.prototype), "drop"));
 	($mol_mem(($.$hyoo_aura_video.prototype), "wheel"));
 	($.$hyoo_aura_video_output) = class $hyoo_aura_video_output extends ($.$mol_video_player) {
+		transform(){
+			return "";
+		}
+		aspect_style(){
+			return "1";
+		}
 		loop(){
 			return true;
 		}
@@ -4148,12 +4154,6 @@ var $;
 				"transform": (this.transform()), 
 				"aspect-ratio": (this.aspect_style())
 			};
-		}
-		transform(){
-			return "";
-		}
-		aspect_style(){
-			return "1";
 		}
 	};
 
