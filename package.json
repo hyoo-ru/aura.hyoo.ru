@@ -79,7 +79,6 @@
     "$node_modules",
     "$mol_exec",
     "$mol_env",
-    "$mol_wire_sync",
     "$mol_view_selection",
     "$mol_after_tick",
     "$mol_memo",
