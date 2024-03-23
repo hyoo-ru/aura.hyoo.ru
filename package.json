@@ -114,7 +114,8 @@
     "$mol_touch",
     "$mol_type_enforce",
     "$mol_video_player",
-    "$mol_video"
+    "$mol_video",
+    "$mol_wire_sync"
   ],
   "dependencies": {
     "jsdom": "*"
